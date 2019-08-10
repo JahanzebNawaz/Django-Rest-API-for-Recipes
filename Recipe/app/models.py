@@ -18,7 +18,7 @@ class UserModel(models.Model):
 
 
 class StepModel(models.Model):
-    step_text = models.CharField( max_length=100, null= False)
+    step_text = models.CharField( max_length=100, null= False, default='None')
 
     class Meta:
         verbose_name = 'Step'
@@ -27,7 +27,7 @@ class StepModel(models.Model):
         return self.step_text
 
 class IngredientModel(models.Model):
-    text = models.CharField(max_length= 100,  null= False )
+    text = models.CharField(max_length= 100,  null= False, default='None')
 
     class Meta:
         verbose_name = 'Intgredient'
@@ -36,7 +36,7 @@ class IngredientModel(models.Model):
         return self.text
 
 class RecipeModel(models.Model):
-    name = models.CharField(null= False, max_length=100)
+    name = models.CharField(null= False, max_length=100,  default='None')
     user = models.OneToOneField(UserModel, primary_key=True, on_delete=models.CASCADE)
     step = models.ForeignKey(StepModel, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(IngredientModel, on_delete=models.CASCADE)
