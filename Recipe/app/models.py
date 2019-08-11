@@ -10,11 +10,10 @@ class UserModel(models.Model):
     password = models.CharField(max_length= 50)
 
     class Meta:
-        verbose_name = 'Users'
+        verbose_name = 'User'
         
     def __str__(self):
         return self.username
-
 
 
 class StepModel(models.Model):
@@ -30,7 +29,7 @@ class IngredientModel(models.Model):
     text = models.CharField(max_length= 100,  null= False, default='None')
 
     class Meta:
-        verbose_name = 'Intgredient'
+        verbose_name = 'Ingredient'
     
     def __str__(self):
         return self.text
@@ -38,8 +37,8 @@ class IngredientModel(models.Model):
 class RecipeModel(models.Model):
     name = models.CharField(null= False, max_length=100,  default='None')
     user = models.OneToOneField(UserModel, primary_key=True, on_delete=models.CASCADE)
-    step = models.ForeignKey(StepModel, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(IngredientModel, on_delete=models.CASCADE)
+    step_text = models.ForeignKey(StepModel, on_delete=models.CASCADE)
+    text = models.ForeignKey(IngredientModel, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Recipe'
